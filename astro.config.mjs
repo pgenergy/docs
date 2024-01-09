@@ -15,16 +15,36 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'General',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'Introduction', link: '/general/introduction' },
+						{ label: 'Getting started', link: '/general/getting-started' },
+						{ label: 'Database', link: '/general/database' }
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Web App',
+					items: [
+						{ label: 'Overview', link: '/web/overview/' },
+						{ label: 'Login', link: '/web/login/' },
+						{ label: 'Sign-up', link: '/web/signup/' },
+						{ label: 'Profile', link: '/web/profile/' },
+						{ label: 'FAQ', link: '/web/faq/' },
+						{ label: 'Dashboard', link: '/web/dashboard/' },
+						{ label: 'Devices', link: '/web/devices/' },
+						{ label: 'Recommendations', link: '/web/recommendations/' },
+						
+					],
 				},
+				{
+					label: 'Admin App',	
+					autogenerate: { directory: 'admin' },
+				},
+				{
+					label: 'Sensors',
+					autogenerate: { directory: 'sensors' },
+				},
+				
 			],
 			customCss: ['./src/tailwind.css'],
 		}),
