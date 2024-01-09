@@ -3,7 +3,7 @@ title: Devices
 description: An overview about the user's devices.
 ---
 
-The devices page allows the user to manage its own devices. By doing so, the user will be able to assign a specific device to a peak in his consumpution pattern (TODO: reference to peak assignment). 
+The devices page allows the user to manage its own devices. By doing so, the user will be able to assign a specific device to a peak in his consumpution pattern (see [here](/web/dashboard#peaks)). 
 
 ## Functionality
 The following explains the functionality of the device management.
