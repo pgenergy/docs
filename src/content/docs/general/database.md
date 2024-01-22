@@ -23,7 +23,7 @@ The user table contains personal and account information of each user:
 CREATE TABLE `user` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`created` timestamp NULL DEFAULT current_timestamp(),
-	`email` varchar(30) NOT NULL,
+	`email` varchar(256) NOT NULL,
 	`username` varchar(30) NOT NULL,
 	`password` varchar(256) NOT NULL,
 	`is_admin` tinyint(1) NOT NULL DEFAULT '0',
@@ -46,6 +46,7 @@ The **user_data** table contains information about the user's household:
 - **living_space**: User's living space in square meters
 - **hot_water**: *electric* or *not electric* hot water
 - **timestamp**: Timestamp at which the user data was saved
+- **advance payment electricity**
 
  ```
  CREATE TABLE `user_data` (
@@ -58,9 +59,10 @@ The **user_data** table contains information about the user's household:
 	`limit_energy` int DEFAULT '800',
 	`household` int,
 	`property` enum('house', 'apartment'),
-	`livingSpace` int,
-	`hotWater` enum('electric', 'not_electric'),
+	`living_space` int,
+	`hot_water` enum('electric', 'not_electric'),
 	`timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+	`advance_payment_electricity` int,
 	PRIMARY KEY (`id`)
 )
  ```
@@ -80,9 +82,10 @@ CREATE TABLE `history_user_data` (
 	`limit_energy` int DEFAULT '800',
 	`household` int,
 	`property` enum('house', 'apartment'),
-	`living_s_pace` int,
+	`living_space` int,
 	`hot_water` enum('electric', 'not_electric'),
 	`timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+	`advance_payment_electricity` int,
 	PRIMARY KEY (`id`)
 )
 ```
@@ -127,18 +130,20 @@ CREATE TABLE `sensor` (
 
 ### Sensor Data Table
 
-The **sensor_data** table contains the data captured by sensors. The *sensor_id* and *timestamp* fields are used as a primary key. Additionally, an index for the *timestamp* attribute makes the search for certain timestamps faster.
-- **sensor_id**: Reference to the [sensor table](#sensor-table)
+The **sensor_data** table contains the data captured by sensors. The *id* field is used as a primary key, while the *sensor_id* and *timestamp* combination should be unique. 
+- **id**: Unique identifier
 - **value**: Captured data value from the sensor
 - **timestamp**: Data at which the sensor data was captured
+- **sensor_id**: Reference to the [sensor table](#sensor-table)
 
 ```
 CREATE TABLE `sensor_data` (
-	`sensor_id` varchar(30) NOT NULL,
+	`id` int NOT NULL AUTO_INCREMENT,
 	`value` int NOT NULL,
 	`timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-	PRIMARY KEY (`sensor_id`, `timestamp`),
-    KEY `idx_timestamp` (`timestamp`)
+	`sensor_id` varchar(30) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `sensor_id` (`sensor_id`, `timestamp`)
 )
 ```
 
