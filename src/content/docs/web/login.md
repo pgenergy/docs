@@ -1,10 +1,13 @@
 ---
-title: Login Form
-description: An overview of the web app.
+title: Login
+description: Login form to authenticate the user.
 ---
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+This form is used by the user to put in their login data for authentication. As login data mail address and password is required. 
 
-## Further reading
+After successful login, a suitable toast is displayed and the function `signInAction` is executed. If a user with the provided email can be found and the encrypted password matches that of the user, the user is redirected to the [dashboard](/web/dashboard/).
 
-- Read [about reference](https://diataxis.fr/reference/) in the Diátaxis framework
+If the login fails, a toast with an error message is displayed and the user can put in new login data.
+
+Alternativley, the user can register a new account by clicking on the link. They then get redirected to the [sign-up](/web/signup/) page.
+
