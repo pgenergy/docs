@@ -182,7 +182,7 @@ CREATE TABLE `device` (
 
 ### History Device Table
 
-The **history_device_data** table stores historic device data. Before an update is performed on the [device table](#device-table), the old device data is saved to the *historc_device* table.
+The **history_device_data** table stores historic device data. Before an update is performed on the [device table](#device-table), the old device data is saved to the *history_device* table.
 
 ```
 CREATE TABLE `history_device` (
@@ -196,16 +196,20 @@ CREATE TABLE `history_device` (
 )
 ```
 
-### Reason Table
+### Peaks Table
+
+The **peaks** table contains data about peaks in the energy consumption. To ensure that a record in the [sensor data table](#sensor-data-table) cannot have multiple **peaks**, a unique constraint is set to the *sensor_data_id* field.
+- **id**: Unique peak identifier
+- **sensor_data_id**: Reference to the [sensor data table](#sensor-data-table)
+- **device_id**: Reference to the [device table](#device-table)
 
 ```
-CREATE TABLE `reason` (
+CREATE TABLE `peaks` (
 	`id` int NOT NULL AUTO_INCREMENT,
-	`user_id` int NOT NULL,
-	`reason` varchar(255),
-	`timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-	`value` int NOT NULL,
-	PRIMARY KEY (`id`)
+	`sensor_data_id` int NOT NULL,
+	`device_id` int NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `peaks_sensor_data_id_unique` (`sensor_data_id`)
 )
 ```
 
