@@ -203,18 +203,19 @@ CREATE TABLE `history_device` (
 
 ### Peaks Table
 
-The **peaks** table contains data about peaks in the energy consumption. To ensure that a record in the [sensor data table](#sensor-data-table) cannot have multiple **peaks**, a unique constraint is set to the *sensor_data_id* field.
+The **peaks** table contains data about peaks in the energy consumption.
 - **id**: Unique peak identifier
-- **sensor_data_id**: Reference to the [sensor data table](#sensor-data-table)
+- **sensor_id**: Reference to the [sensor table](#sensor-table)
 - **device_id**: Reference to the [device table](#device-table)
+- **timestamp**: Timestamp at which the peak occures
 
 ```
 CREATE TABLE `peaks` (
 	`id` int NOT NULL AUTO_INCREMENT,
-	`sensor_data_id` int NOT NULL,
+	`sensor_id` varchar(30) NOT NULL,
 	`device_id` int NOT NULL,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `peaks_sensor_data_id_unique` (`sensor_data_id`)
+	`timestamp` timestamp NULL,
+	PRIMARY KEY (`id`)
 )
 ```
 
