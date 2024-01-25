@@ -3,8 +3,14 @@ title: Getting started
 description: Guide on how to get started.
 ---
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+## Web App and Admin App
 
-## Further reading
+- Clone the [repository](https://github.com/pgenergy/energyleaf).
+- Execute `pnpm install` to install dependencies.
+- Rename `.env.sample` to `.env` and put in host, user, and password. Ask an administrator for this sensitive information.
+- Execute `pnpm dev` to run the project in development mode or `pnpm build` to build it.
+- Local deployment can be accessed on
+    - http://localhost:3000 for the web app and
+    - http://localhost:3001 for the admin app.
+- Execute `pnpm lint` to check the source code against best practices of web development and `pnpm format` to make the code more easily readable.
 
-- Read [about how-to guides](https://diataxis.fr/how-to-guides/) in the Diátaxis framework
