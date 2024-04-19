@@ -1,5 +1,11 @@
 # Energyleaf Docs
 
+## 🔍 Focus
+
+This documentation is focused on the technical design and functionality of the Energyleaf system. Therefore, it is not suitable for end users, but is aimed at people with technical knowledge.
+
+In terms of content, this documentation avoids going into the specific implementation of the processes and functionalities in the code. Instead, it describes how these functionalities work conceptually (e.g. in the form of diagrams). If you are interested in the concrete implementation, please take a look at our code on [GitHub](https://github.com/pgenergy). 
+
 ## 🚀 Project Structure
 
 Inside the "Energyleaf Docs" project, you'll see the following folders and files:
