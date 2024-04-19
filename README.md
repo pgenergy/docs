@@ -31,6 +31,19 @@ Images can be added to `src/assets/` and embedded in Markdown with a relative li
 
 Static assets, like favicons, can be placed in the `public/` directory.
 
+## 📄 Documentation Structure
+This documentation consists of the following chapters:
+- General
+    - Person in charge: [@Big0x44](https://github.com/Big0x44)
+- Web App
+    - Person in charge: [@Big0x44](https://github.com/Big0x44)
+- Admin App
+    - Person in charge: [@Big0x44](https://github.com/Big0x44)
+- Sensors
+    - Person in charge: [@SlepiK](https://github.com/SlepiK)
+- ML-API
+    - Person in charge: [@lhoeke](https://github.com/lhoeke)
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
