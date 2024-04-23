@@ -1,9 +1,24 @@
-<mxfile host="app.diagrams.net" modified="2024-04-23T09:11:32.068Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0" version="22.1.17" etag="6VAtbSCPTNY1TSAhaMro" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-23T09:19:20.912Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0" etag="bumoG050t4HZ1r5wySj1" version="22.1.17" type="github">
   <diagram name="Seite-1" id="pW4nG8WH9TfMo9uKfoPs">
-    <mxGraphModel>
+    <mxGraphModel dx="474" dy="1772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="-V0COXys2nx_A6NHHlzI-1" value="user" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="120" y="-300" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-V0COXys2nx_A6NHHlzI-3" value="id" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="-390" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-V0COXys2nx_A6NHHlzI-4" value="created" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="160" y="-410" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-V0COXys2nx_A6NHHlzI-5" value="email" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="220" y="-360" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-V0COXys2nx_A6NHHlzI-6" value="username" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="250" y="-300" width="100" height="40" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
