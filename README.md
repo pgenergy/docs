@@ -39,6 +39,8 @@ This documentation consists of the following chapters:
     - Person in charge: [@Big0x44](https://github.com/Big0x44)
 - Admin App
     - Person in charge: [@Big0x44](https://github.com/Big0x44)
+- Web API
+    - Person in charge: [@m43i](https://github.com/m43i)
 - Sensors
     - Person in charge: [@SlepiK](https://github.com/SlepiK)
 - ML-API

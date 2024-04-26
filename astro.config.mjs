@@ -20,6 +20,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Introduction', link: '/general/introduction' },
 						{ label: 'Getting started', link: '/general/getting-started' },
+						{ label: 'Architecture', link: '/general/architecture' },
 						{ label: 'Database', link: '/general/database' }
 					],
 				},
@@ -42,10 +43,17 @@ export default defineConfig({
 					autogenerate: { directory: 'admin' },
 				},
 				{
+					label: 'Web API',
+					autogenerate: { directory: 'web_api' },
+				},
+				{
 					label: 'Sensors',
 					autogenerate: { directory: 'sensors' },
 				},
-				
+				{
+					label: 'ML API',
+					autogenerate: { directory: 'ml_api' },
+				}
 			],
 			customCss: ['./src/tailwind.css'],
 			plugins: [starlightImageZoom()],
