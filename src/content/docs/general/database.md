@@ -3,7 +3,7 @@ title: Database
 description: Planetscale database schema and table content.
 ---
 
-Data is stored in the [planetscale](https://app.planetscale.com/energyleaf/energyleaf) database. This page provides an overview of the database schema and table content.
+Data is stored in the [planetscale](https://app.planetscale.com/energyleaf/energyleaf) database with MySQL as the DBMS. This page provides an overview of the database schema and table content.
 
 ## Historisation of data
 
