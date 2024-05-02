@@ -1,0 +1,59 @@
+---
+title: Web App
+description: An overview of the web app.
+---
+
+import { Card, LinkCard, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import tailwindimage from '/src/assets/tailwindcss-logotype.svg';
+import tailwindimageDark from '/src/assets/tailwindcss-logotype-white.svg';
+
+The energyleaf web app is the only software used by our end users and aims at giving them an overview of their energy consumption.
+
+## Architecture
+
+To be able to concentrate on the software development itself, we use a serverless architecture. In a nutshell, it helps us developing our software quickly and handles a lrage of the deployment process.
+
+:::tip
+If you'd like to dig deeper into this topic, you may take a look at one of the following articles.
+- https://martinfowler.com/articles/serverless.html
+- https://www.cloudflare.com/learning/serverless/why-use-serverless/
+- https://www.datadoghq.com/knowledge-center/serverless-architecture/
+:::
+
+## Software stack
+
+The web app is written in Typescript with the following software stack:
+
+<CardGrid stagger>
+	<Card title="pnpm" icon="pnpm">
+		We use pnpm as our package manager.
+        <LinkCard
+            title="Check out"
+            description="Click here to go to the official website of pnpm."
+            href="https://pnpm.io/"
+        />
+	</Card>
+	<Card title="React.js" icon="seti:react">
+		Our frontend web framework is react.js.
+        <LinkCard
+            title="Check out"
+            description="Click here to go to the official website of React.js."
+            href="https://react.dev/"
+        />
+	</Card>
+	<Card>
+        <Image src={tailwindimage} alt="A description of my image." class="dark:hidden" />
+        <Image src={tailwindimageDark} alt="A description of my image." class="light:hidden" />
+        
+        The framework Tailwind CSS simplifies styling with CSS.
+		
+        <LinkCard
+            title="Check out"
+            description="Click here to go to the official website of Tailwind CSS."
+            href="https://tailwindcss.com/"
+        />
+	</Card>
+</CardGrid>
+
+
