@@ -27,15 +27,7 @@ export default defineConfig({
 				{
 					label: 'Web App',
 					items: [
-						{ label: 'Overview', link: '/web/overview/' },
-						{ label: 'Login', link: '/web/login/' },
-						{ label: 'Sign-up', link: '/web/signup/' },
-						{ label: 'Profile', link: '/web/profile/' },
-						{ label: 'FAQ', link: '/web/faq/' },
-						{ label: 'Dashboard', link: '/web/dashboard/' },
-						{ label: 'Devices', link: '/web/devices/' },
-						{ label: 'Recommendations', link: '/web/recommendations/' },
-						
+						{ label: 'Overview', link: '/web/overview/' }						
 					],
 				},
 				{
