@@ -29,6 +29,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Overview', link: '/web/overview/' },
 						{ label: 'App versions', link: '/web/app-versions/' },
+						{ label: 'Demo', link: '/web/demo/' },					
 					],
 				},
 				{
