@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-05-25T15:35:48.680Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0" etag="xxr_zznfJnZXfYMRBMuK" version="24.4.8" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-25T17:24:06.665Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0" etag="IXG1payKmx7bRcNt7tMx" version="24.4.8" type="github">
   <diagram name="Seite-1" id="pW4nG8WH9TfMo9uKfoPs">
-    <mxGraphModel dx="2261" dy="1952" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1494" dy="1533" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -901,14 +901,11 @@
         <mxCell id="-V0COXys2nx_A6NHHlzI-211" value="&lt;span data-code-marker=&quot;+&quot; class=&quot;blob-code-inner blob-code-marker js-code-nav-pass&quot;&gt;&lt;span class=&quot;pl-s&quot;&gt;device_to_peak&lt;/span&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="910" y="-344.59" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="-V0COXys2nx_A6NHHlzI-213" value="sensor_id" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4" parent="1" vertex="1">
-          <mxGeometry x="840" y="-259.99999999999994" width="100" height="40" as="geometry" />
+        <mxCell id="-V0COXys2nx_A6NHHlzI-213" value="sensor_data_id" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4" parent="1" vertex="1">
+          <mxGeometry x="850" y="-271.18999999999994" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="-V0COXys2nx_A6NHHlzI-214" value="device_id" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4" parent="1" vertex="1">
-          <mxGeometry x="1010" y="-260" width="100" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="-V0COXys2nx_A6NHHlzI-215" value="timestamp" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4" parent="1" vertex="1">
-          <mxGeometry x="930" y="-220" width="100" height="40" as="geometry" />
+          <mxGeometry x="970" y="-270" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="-V0COXys2nx_A6NHHlzI-218" value="" style="endArrow=none;html=1;rounded=0;" parent="1" source="-V0COXys2nx_A6NHHlzI-206" target="-V0COXys2nx_A6NHHlzI-211" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -925,12 +922,6 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1531" y="-245" as="sourcePoint" />
             <mxPoint x="1490" y="-258" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="-V0COXys2nx_A6NHHlzI-221" value="" style="endArrow=none;html=1;rounded=0;" parent="1" source="-V0COXys2nx_A6NHHlzI-211" target="-V0COXys2nx_A6NHHlzI-215" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1541" y="-235" as="sourcePoint" />
-            <mxPoint x="1500" y="-248" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="-V0COXys2nx_A6NHHlzI-222" value="" style="endArrow=none;html=1;rounded=0;" parent="1" source="-V0COXys2nx_A6NHHlzI-211" target="-V0COXys2nx_A6NHHlzI-213" edge="1">
