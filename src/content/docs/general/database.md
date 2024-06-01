@@ -120,7 +120,7 @@ The **sensor_data** table contains the data captured by sensors. The *id* field 
 | Name | Type | Description |
 |------|---|---|
 | id | varchar(35) | Unique identifier |
-| value | real(precision: 12, scale: 4) | Captured data value from the sensor. This represents meter reading in kWh |
+| value | decimal(30, 6) | Captured data value from the sensor. This represents meter reading in kWh |
 | timestamp | timestamp | Date at which the sensor data was captured |
 | sensor_id | varchar(30) | Reference to the [sensor table](#sensor-table) |
 
