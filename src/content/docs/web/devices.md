@@ -3,7 +3,7 @@ title: Devices
 description: An overview about the user's devices.
 ---
 
-The devices page allows the user to manage its own devices. By doing so, the user will be able to assign a specific device to a peak in his consumpution pattern (see [here](/web/dashboard#peaks)). 
+<!-- The devices page allows the user to manage its own devices. By doing so, the user will be able to assign a specific device to a peak in his consumpution pattern (see [here](/web/dashboard#peaks)). 
 
 ## Functionality
 The following explains the functionality of the device management.
@@ -43,4 +43,4 @@ The *DevicesTable* represents the table that contains the devices that are displ
 The *DeviceDetailsDialog* is the dialog that opens when you click the buttons to add or edit a device (see [the screenshot above](#adding-a-device)). The dialog encloses the [*DeviceDetailsForm*](#devicedetailsform).
 
 ### DeviceDetailsForm
-The *DeviceDetailsForm* is the form used to add or edit devices. By default, the form will add a new device. If you want to edit an existing device, you can pass it to the *device* parameter of the component. When the form is submitted, it will trigger a save or update operation in the database, depending on whether a device is edited.
+The *DeviceDetailsForm* is the form used to add or edit devices. By default, the form will add a new device. If you want to edit an existing device, you can pass it to the *device* parameter of the component. When the form is submitted, it will trigger a save or update operation in the database, depending on whether a device is edited. -->
