@@ -52,7 +52,13 @@ export default defineConfig({
 				},
 				{
 					label: 'ML API',
-					autogenerate: { directory: 'ml_api' },
+					items: [
+						{ label: 'Overview', link: '/ml_api/overview/' },
+						{ label: 'Structure', link: '/ml_api/structure/' },
+						{ label: 'Data', link: '/ml_api/data/' },
+						{ label: 'Model-training', link: '/ml_api/model_training/' },
+						{ label: 'Hosting', link: '/ml_api/hosting/' },
+					],
 				}
 			],
 			customCss: ['./src/tailwind.css'],
