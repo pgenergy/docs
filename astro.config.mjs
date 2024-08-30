@@ -55,7 +55,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Overview', link: '/ml_api/overview/' },
 						{ label: 'Structure', link: '/ml_api/structure/' },
-						{ label: 'Data-processing', link: '/ml_aüi/data_processing/' },
+						{ label: 'Data', link: '/ml_api/data/' },
 						{ label: 'Model-training', link: '/ml_api/model_training/' },
 						{ label: 'Hosting', link: '/ml_api/hosting/' },
 					],

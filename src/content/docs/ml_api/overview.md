@@ -3,11 +3,23 @@ title: ML API
 description: The machine learning API providing access to the machine learning models.
 ---
 
+The ML-API can be found at `https://github.com/pgenergy/ml-api`.
 
-Relevant files regarding the web app can be found under the path `/apps/web/`. The source code in `/apps/web/src` entails application pages in `/apps/web/src/app`, which are described in the following documentation pages:
+The models for requests and responses can be found in `app/models/models.py`. The routes through which the various requests can be accessed are located in `app/routers/ml_api.py`. There, the routes are divided into different versions. The models are loaded in `app/tasks/load_models.py` and stored under `code/models/`.
+
 - [Structure](/ml_api/structure)
 - [Data-processing](/ml_api/data_processing)
 - [Model-training](/ml_api/model_training)
 - [Hosting](/ml_api/hosting)
 
-**Server actions** are defined in `/apps/web/src/action`. **HTML components** can be found in `/apps/web/src/components`. **Hooks** are saved in `/apps/web/src/hooks`. `/apps/web/src/query` stores **database queries**. In `/apps/web/src/types` **data types** are described. **Other functions and schemas** can be found in `/apps/web/src/lib`.
+**Hosting** is handled through Fly.io (`https://fly.io`). The **communication** is done via Protobuf. 
+
+## Install dependencies
+
+It is assumed that Python is installed on the device. Create a virtual python3 environment at top level of folder structure and install requirements.text inside that environment and run `http://localhost:80/`.
+
+## Running in Docker container
+
+Overall, the ML-API uses **Docker**, which can be launched locally through the command line with `docker-compose up --build` after Docker is installed.
+
+Visit the OpenAPI/Swagger Iterface via `http://localhost:80/docs`.
