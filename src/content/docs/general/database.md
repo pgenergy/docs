@@ -120,7 +120,7 @@ The **sensor_data** table contains the data captured by sensors. The *id* field 
 | Name | Type | Description |
 |------|---|---|
 | id | varchar(35) | Unique identifier |
-| value | real(precision: 12, scale: 4) | Captured data value from the sensor. This represents meter reading in kWh |
+| value | decimal(30, 6) | Captured data value from the sensor. This represents meter reading in kWh |
 | timestamp | timestamp | Date at which the sensor data was captured |
 | sensor_id | varchar(30) | Reference to the [sensor table](#sensor-table) |
 
@@ -134,20 +134,18 @@ The **device** table contains each user's devices.
 | user_id | varchar(30) | Reference to the [user table](#user-table) |
 | name | varchar(30) | The name of the device |
 | category | varchar(30) | The category of the device (`CoolingAndFreezing`, `CookingAndBaking`, `CleaningAndLaundry`, `EntertainmentAndComputers`, `SmallKitchenAppliances`, `ClimateAndHeating`, `Lighting`, `Care`) |
-| created | The point in time where this device was created |
-| timestamp | The point in time where tha device was last updated |
+| created | timestamp | The point in time where this device was created |
+| timestamp | timestamp | The point in time where tha device was last updated |
 
 ### History Device Table
 
 The **history_device_data** table stores historic device data. See [above](#device-table) for information about the schema.
 
-### Peaks Table
+### Device to Peak Table
 
-The **peaks** table contains data about peaks in the energy consumption. Note that each peak in this table represents an assignment of a device to a [sensor data record](#sensor-data-table). Thus, not each peak in the user's consumption is saved in this table.
+The **device_to_peak** table defines the n:m relationship between a peak in the [sensor data](#sensor-data-table) and the [device table](#device-table).
 
 | Name | Type | Description |
 |------|---|---|
-| id | int | Unique identifier |
-| sensor_id | varchar(30) | Reference to the [sensor table](#sensor-table) |
-| device_id | int | Reference to the [device table](#device-table) |
-| timestamp | timestamp | Time in point where this peak was last updated |
+| sensor_data_id | varchar(35) | References the [sensor data table](#sensor-data-table) |
+| device_id | int | References the [device table](#device-table) |
