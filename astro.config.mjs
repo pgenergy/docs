@@ -21,7 +21,8 @@ export default defineConfig({
 						{ label: 'Introduction', link: '/general/introduction' },
 						{ label: 'Getting started', link: '/general/getting-started' },
 						{ label: 'Architecture', link: '/general/architecture' },
-						{ label: 'Database', link: '/general/database' }
+						{ label: 'Database', link: '/general/database' },
+						{ label: 'Scripts', link: '/general/scripts' },
 					],
 				},
 				{
