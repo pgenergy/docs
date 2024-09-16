@@ -43,3 +43,17 @@ Most of the names are indicating the purpose of the operator itself. So the Sele
 ![Functionality of the sensor for analog electricity meters](/src/assets/sensors/v1/protocol_example.svg)
 
 Because this type of sensor did not need any script (only the round per kWh number), the ScriptAcceptedRequest and -Response are not used.
+
+#### Installation
+
+Position the sensor like in the image below. The tips on each side of the case will help to position it, so the center of the sensor will be pointing on the center of the ferraris runner. The center of the ferraris runner is normally indicated by a black line. The brackets are a little adjustable but will need to be held in place by using some tape, like duct tape. 
+
+After that the sensor can be powered on and should give access to a WLAN-Hotspot with "energyleaf" in its SSID. Connecting to that WLAN-Hotspot will grant access to the configuration, to set the WLAN the sensor should use for its communication. After setting the configuration the hotspot will be closed until it cant connect to the configured WLAN.
+
+When everything worked correctly, the light emmited from the sensor to the electricity meter should be visible. Also if some energy is used, the energy usage should be accessible at energyleaf.de.
+
+![Installation of analog electricity meter sensor](/src/assets/sensors/v1/analog_sensor_installation.jpg)
+:::note
+The image above is just a demo image without duct tape. In production, the meter will mostly not lay down on some
+ table.
+:::
