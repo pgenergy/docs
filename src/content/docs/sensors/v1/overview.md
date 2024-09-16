@@ -9,6 +9,10 @@ The main focus of the v1 sensor system is the reading of electricity meter data.
 
 The structure is split into three parts. The first two are responsible for a digital or smart electricity meter, and the third handles analog electricity meters.
 
+:::note
+Only https-connections are allowed. If you want to change the host from *.energyleaf.de to any other, that address needs to be changed directly in the code, and also the certificate maybe needs to be changed. Currently the lets encrypt x1 cert is used.
+:::
+
 ### Digital / Smart Electricity Meter
 
 The code for this type of meter is available at [Smart Electricity Meter Repository](https://github.com/pgenergy/smart-electricity-meter).
@@ -39,7 +43,3 @@ Most of the names are indicating the purpose of the operator itself. So the Sele
 ![Functionality of the sensor for analog electricity meters](/src/assets/sensors/v1/protocol_example.svg)
 
 Because this type of sensor did not need any script (only the round per kWh number), the ScriptAcceptedRequest and -Response are not used.
-
-### V1 specific notes
-
-Only https-connections are allowed. If you want to change the host from *.energyleaf.de to any other, that address needs to be changed directly in the code, and also the certificate maybe needs to be changed. Currently the lets encrypt x1 cert is used.
