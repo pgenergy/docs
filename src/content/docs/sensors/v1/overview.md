@@ -28,6 +28,18 @@ After that, the sensor will send its data by the SensorDataRequestV2 and will re
 
 An failure could be that the lifetime of the token is exceeded and the sensor itself didn't correctly request a new token (the sensor itself also counts the lifetime it gets by TokenResponse). In that case, the sensor will handle that by requesting a new token and will retry the sending of the data package.
 
+#### Installation
+
+Position the sensor like in the image below. If later no data can be read from the meter, the sensor needs to be rotated by 180 degrees so that the cable is pointing down. After positioning the sensor, the sensor can be connected to a power source. A WLAN-Hotspot with "energyleaf" in the SSID should be visible. Connecting with that hotspot will grant access to the configuration to set the WLAN for the sensor. The sensor should show the assigned IP address of the sensor. Connecting to that IP address (while in the correct network) gives access to the sensor. If the sensor is registered correctly, the page "edit script" should show the script that is set by energyleaf (the mark at "enable script" must be active).
+
+To see what the sensor is doing, the log can be activated in the configuration and a corresponding log level can be set. Increase the log level for the console and see what the sensor is processing on the page for the console.
+
+:::tip
+Using the output on the console with an increased log level can help at adjusting the positioning of the sensor. 
+:::
+
+![Installation of digital / smart electricity meter sensor](/src/assets/sensors/v1/digital_sensor_installation.jpg)
+
 ### Analog Electricity Meter
 
 The code for this type of meter is available at [Analog Electricity Meter Repository](https://github.com/pgenergy/analog-electricity-meter).
