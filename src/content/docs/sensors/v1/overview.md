@@ -54,6 +54,5 @@ When everything worked correctly, the light emmited from the sensor to the elect
 
 ![Installation of analog electricity meter sensor](/src/assets/sensors/v1/analog_sensor_installation.jpg)
 :::note
-The image above is just a demo image without duct tape. In production, the meter will mostly not lay down on some
- table.
+The image above is just a demonstration image without duct tape. In production, the meter will not be placed on a table.
 :::
