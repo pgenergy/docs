@@ -30,7 +30,12 @@ export default defineConfig({
 					items: [
 						{ label: 'Overview', link: '/web/overview/' },
 						{ label: 'App versions', link: '/web/app-versions/' },
-						{ label: 'Demo', link: '/web/demo/' },					
+						{ label: 'Demo', link: '/web/demo/' },
+						{ label: 'Sensor Data Sequences', link: '/web/sequences/' },
+						{ label: 'Devices', link: '/web/devices/' },
+						{ label: 'Suggestions', link: '/web/suggestions/' },
+						{ label: 'Reports', link: '/web/reports/' },
+						{ label: 'Logging', link: '/web/logging/' },
 					],
 				},
 				{
