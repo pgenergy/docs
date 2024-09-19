@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
 import starlightImageZoom from 'starlight-image-zoom'
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
@@ -65,5 +66,6 @@ export default defineConfig({
 			plugins: [starlightImageZoom()],
 		}),
 		tailwind({ applyBaseStyles: false }),
+		mdx(),
 	],
 });
