@@ -9,11 +9,6 @@ This API is built to facilitate efficient and seamless integration between machi
 
 The models for requests and responses are located in `app/models/`. The routes through which the various requests can be accessed are in `app/routers/`. The routes are divided into different versions. The models are loaded in `app/tasks/load_models.py` and stored under `models/`.
 
-- [Structure](/ml_api/structure)
-- [Data-processing](/ml_api/data_processing)
-- [Model-training](/ml_api/model_training)
-- [Hosting](/ml_api/hosting)
-
 **Hosting** is handled through Fly.io (`https://fly.io`), and **communication** uses Protobuf.
 
 ## Install dependencies
