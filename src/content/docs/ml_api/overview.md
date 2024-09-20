@@ -5,21 +5,26 @@ description: The machine learning API providing access to the machine learning m
 
 The ML-API can be found at `https://github.com/pgenergy/ml-api`.
 
-The models for requests and responses can be found in `app/models/models.py`. The routes through which the various requests can be accessed are located in `app/routers/ml_api.py`. There, the routes are divided into different versions. The models are loaded in `app/tasks/load_models.py` and stored under `code/models/`.
+This API is built to facilitate efficient and seamless integration between machine learning models and the Energyleaf web application. It currently supports models for device classification and CO2 predictions, with the flexibility to incorporate additional models in the future as needed.
+
+The models for requests and responses are located in `app/models/`. The routes through which the various requests can be accessed are in `app/routers/`. The routes are divided into different versions. The models are loaded in `app/tasks/load_models.py` and stored under `models/`.
 
 - [Structure](/ml_api/structure)
 - [Data-processing](/ml_api/data_processing)
 - [Model-training](/ml_api/model_training)
 - [Hosting](/ml_api/hosting)
 
-**Hosting** is handled through Fly.io (`https://fly.io`). The **communication** is done via Protobuf. 
+**Hosting** is handled through Fly.io (`https://fly.io`), and **communication** uses Protobuf.
 
 ## Install dependencies
 
-It is assumed that Python is installed on the device. Create a virtual python3 environment at top level of folder structure and install requirements.text inside that environment and run `http://localhost:80/`.
+It is assumed that Python is installed on the device. Create a virtual python3 environment at the top level of the folder structure, install `requirements.txt`, and run the API on `http://localhost:80/`.
 
 ## Running in Docker container
 
-Overall, the ML-API uses **Docker**, which can be launched locally through the command line with `docker-compose up --build` after Docker is installed.
+The ML-API uses **Docker** and can be launched locally with the following command:
+```bash
+$ docker-compose up --build
+```
 
-Visit the OpenAPI/Swagger Iterface via `http://localhost:80/docs`.
+Once Docker is installed, the API can be accessed via the OpenAPI/Swagger interface at `http://localhost:80/docs`.
