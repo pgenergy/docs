@@ -40,4 +40,4 @@ In our case, static data is only the sensor data of the user as well as the sequ
 
 Since the sensor data is a time series, there needs to be a shifting of the timestamps. Otherwise, the data would be outdated after a certain time and users would need to search for the data in the past. Basically, the difference between the current time and the time of the last data point is calculated and added to the timestamps of the demo data.
 
-To allow easy insertion of the static data, we provide a [script](/general/scripts#addDemoData) that inserts the data based on a JSON file and finds all sequences in it.
+To allow easy insertion of the static data, we provide a [script](/general/scripts#4-addDemoData) that inserts the data based on a JSON file and finds all sequences in it.
