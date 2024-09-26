@@ -1,4 +1,3 @@
-
 ---
 title: Cron Endpoints
 description: Detailed documentation for all cron-triggered endpoints and their scheduling configuration.

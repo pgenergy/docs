@@ -1,4 +1,3 @@
-
 ---
 title: API Endpoints
 description: Detailed documentation for all API endpoints with request/response structures and error handling.
