@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
 import starlightImageZoom from 'starlight-image-zoom'
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,21 +22,21 @@ export default defineConfig({
 						{ label: 'Introduction', link: '/general/introduction' },
 						{ label: 'Getting started', link: '/general/getting-started' },
 						{ label: 'Architecture', link: '/general/architecture' },
-						{ label: 'Database', link: '/general/database' }
+						{ label: 'Database', link: '/general/database' },
+						{ label: 'Scripts', link: '/general/scripts' },
 					],
 				},
 				{
 					label: 'Web App',
 					items: [
 						{ label: 'Overview', link: '/web/overview/' },
-						{ label: 'Login', link: '/web/login/' },
-						{ label: 'Sign-up', link: '/web/signup/' },
-						{ label: 'Profile', link: '/web/profile/' },
-						{ label: 'FAQ', link: '/web/faq/' },
-						{ label: 'Dashboard', link: '/web/dashboard/' },
+						{ label: 'App versions', link: '/web/app-versions/' },
+						{ label: 'Demo', link: '/web/demo/' },
+						{ label: 'Sensor Data Sequences', link: '/web/sequences/' },
 						{ label: 'Devices', link: '/web/devices/' },
-						{ label: 'Recommendations', link: '/web/recommendations/' },
-						
+						{ label: 'Suggestions', link: '/web/suggestions/' },
+						{ label: 'Reports', link: '/web/reports/' },
+						{ label: 'Logging', link: '/web/logging/' },
 					],
 				},
 				{
@@ -65,5 +66,6 @@ export default defineConfig({
 			plugins: [starlightImageZoom()],
 		}),
 		tailwind({ applyBaseStyles: false }),
+		mdx(),
 	],
 });

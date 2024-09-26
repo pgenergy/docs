@@ -1,0 +1,85 @@
+---
+title: Sensor Data Sequences
+description: Detection logic of high consumptions over a longer period.
+---
+
+import Latex from '../../../components/Latex.astro';
+
+Because active devices can cause high energy consumption, inspecting the energy consumption time series may reveal time periods where the energy consumption is significantly higher than usual. In this case, these periods are called sequences. We separate between so-called peaks and anomalies. Whereas peaks are quite common and pretty much explainable by the devices, anomalies represent periods of very high energy consumption that are very unusual with respect to the usual consumption pattern.
+
+Note that peaks in this context are not the same as peaks in the usual sense. Usually, peaks are single points in time where the energy consumption is very high. In this context, peaks are sequences of high energy consumption over a longer period. This is important because high consumption at single points in time can be caused e.g. by turning on a device, which has no meaning in the context of the app.
+
+![Clarification and motivation of the sequences](/src/assets/sequences/sequences-clarification.png)
+
+## Finding Sequences
+
+Since peaks and anomalies are conceptually the same, finding sequences for a sensor is the same for both. The algorithm for finding sequences is based on a 30-minute observation window. So, the algorithm is executed every 30 minutes, meaning that sequences are detected in an iterative manner.
+
+### Finding Sequences in an Iteration
+
+Simply speaking, the algorithm consists of two steps:
+1. [Calculating a threshold](#calculating-a-threshold)
+2. [Detecting sequences](#detecting-sequences)
+
+#### Calculating a Threshold
+
+First of all, a threshold is calculated for the sensor. This allows to determine high energy consumption. Calculating the threshold is based on a 24-hour reference period before the observation window. Based on this reference period, we can calculate the median absolute deviation (MAD) as follows:
+
+<Latex formula={'\\text{MAD} = \\text{median}(|X_i - \\tilde{X}|)'}/>
+
+The threshold can now be determined using following formula:
+
+<Latex formula={'T = \\text{MAD} * 1.4826 * k'}/>
+
+Note that the factor 1.4826 has proven to be good in other scenarios where finding high values over a longer period was necessary. Besides, the factor `k` is a parameter that allows to fine-tune the threshold which allows to handle the difference between peaks and anomalies. In the following table, you can see the values for `k` with respect to the sequence type:
+
+| Sequence Type | `k`    |
+|---------------|--------|
+| Peak          | 5      |
+| Anomaly       | 5000   |
+
+#### Detecting Sequences
+
+To detect sequences, the sensor data is iterated through in the observation window sorted by the timestamp ascending. For each data point, the energy consumption is compared to the threshold. When the consumption of a data point exceeds the threshold value for the first time, a possible sequence begins. The sequence ends when there was no data point exceeding the threshold in the last two minutes. Consequently, data points below the threshold may be part of a sequence. This is important for volatile energy consumption data that drops below the threshold just for a few seconds.
+
+![Detection of sequences](/src/assets/sequences/sequence-detection.svg)
+
+### Handling Sequences Over Multiple Iterations
+
+To allow sequences to be longer than two minutes, we implemented a logic to merge sequences. It basically determines the time difference between the last sequence before the observation window and the first sequence in the observation window. If the time difference is less than two minutes, the sequences are merged by updating the end time of the last sequence before the observation window and discarding the first sequence in the observation window.
+
+Following this approach, special care must be taken when one device is turned off and another device with a significantly different power is turned on immediately after that. Graphically speaking, the consumption abruptly drops from one level to another. To handle such cases, the merging of sequences also checks if the average power (see [next section](#calculate-the-average-power-of-a-sequence)) of the first sequence in the observation window is above 50% of the average power of the last sequence before the observation window.
+
+:::caution
+This approach is not perfect and has some room for improvement. See section [Possible Improvements](#possible-improvements) for more information.
+:::
+
+## Calculating the Average Power of a Sequence
+
+For [estimating the power of a device](/web/devices), the average power of a sequence is a prerequisite. First of all, the power at a certain time is calculated by using formula
+
+<Latex formula={'P = \\frac{\\Delta W}{\\Delta t}'}/>
+
+where `ΔW` is the difference of the energy consumption between the last and the current data point and `Δt` is the time difference between the last and the current data point.
+
+To calculate the average power of a sequence, the power of all data points in the sequence is summed up and divided by the number of data points. This results in the average power of the sequence.
+
+### Handling of the Base Load
+
+Since we don't really care about devices that are active the whole time (e.g. freezer), we determine the base load of the household. This is done during one iteration of the sequence detection algorithm. After all sequences have been found, all periods in the reference period and the observation window that are not part of a sequence are determined. By calculating the average power of all data points in these periods, we get the base load of the household. This value is subtracted from the previously calculated average power of the sequences to get the average power per sequence.
+
+## Possible Improvements
+
+In the following, some improvements are described that could be evaluated in the future.
+
+### Dynamic Observation Windows
+
+As of now, the observation window is fixed to 30 minutes. This leads to good results because it detects all sequences as expected. However, this approach may lead to gaps in the sequences, for example, when an error occurs during the detection of sequences. To handle such cases, a dynamic observation window could be implemented. This would allow to detect sequences even if the algorithm failed to detect them in the last iteration. Furthermore, this improves the robustness of the sequences detection since the algorithm currently needs to be triggered every 30 minutes as well. Otherwise, sequences may be overlapping or missing.
+
+:::note
+This has already been implemented. Unfortunately, this led to some downsides. First, the dynamic observation windows may cause an inadequate threshold when the consumption pattern changes significantly over time (e.g. due to high consumption on the first day and pretty low consumption on the next day). Second, overlapping sequences occurred which may be caused by the implementation. Since time was running out, we decided to go back to the fixed observation window.
+:::
+
+### Sequence Splitting
+
+As described [above](#handling-sequences-over-multiple-iterations), sequences are not merged if their power is 50% different from each other. This approach is not perfect because it may lead to one sequence even if a device is turned on or off during the sequence. Consequently, some fine-tuning would be necessary to improve this. Another interesting approach might be the usage of a [Hoeffding bound](https://en.wikipedia.org/wiki/Hoeffding's_inequality) to detect windows with a different mean power.
