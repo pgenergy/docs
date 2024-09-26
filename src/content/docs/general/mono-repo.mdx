@@ -9,6 +9,7 @@ import tailwindimage from '/src/assets/tailwindcss-logotype.svg';
 import tailwindimageDark from '/src/assets/tailwindcss-logotype-white.svg';
 import nextjsimage from '/src/assets/nextjs-logotype-light-background.svg';
 import nextjsimageDark from '/src/assets/nextjs-logotype-dark-background.svg';
+import { Steps } from '@astrojs/starlight/components';
 
 Generally, we use a monorepo structure for our main backend and apps that are accessible for users. This includes the following components:
 
@@ -20,14 +21,17 @@ Using a monorepo allows us to manage all components in one place and share code 
 
 ## Getting Started
 
-- Clone the [repository](https://github.com/pgenergy/energyleaf).
-- Execute `pnpm install` to install dependencies.
-- Rename `.env.sample` to `.env` and put in host, user, and password. Ask an administrator for this sensitive information.
-- Execute `pnpm dev` to run the project in development mode or `pnpm build` to build it.
-- Local deployment can be accessed on
+<Steps>
+1. Clone the [repository](https://github.com/pgenergy/energyleaf).
+2. Execute `pnpm install` to install dependencies.
+3. Rename `.env.sample` to `.env` and put in host, user, and password. Ask an administrator for this sensitive information.
+4. Execute `pnpm dev` to run the project in development mode or `pnpm build` to build it.
+5. Local deployment can be accessed on
     - http://localhost:3000 for the web app and
     - http://localhost:3001 for the admin app.
-- Execute `pnpm lint` to check the source code against best practices of web development and `pnpm format` to make the code more easily readable.
+</Steps>
+
+Execute `pnpm lint` to check the source code against best practices of web development and `pnpm format` to make the code more easily readable.
 
 ## Architecture
 
