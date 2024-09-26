@@ -23,6 +23,7 @@ export default defineConfig({
 						{ label: 'Getting started', link: '/general/getting-started' },
 						{ label: 'Architecture', link: '/general/architecture' },
 						{ label: 'Database', link: '/general/database' },
+						{ label: 'Mono Repository', link: '/general/mono-repo' },
 						{ label: 'Scripts', link: '/general/scripts' },
 					],
 				},
