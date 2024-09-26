@@ -46,16 +46,16 @@ The Web API interacts with several components in the system, including:
 The endpoints are triggered through various mechanisms:
 
 - **Direct Calls**: Some endpoints are triggered by direct API requests from sensors, the web app, or the admin app. Examples include sending sensor data or exporting CSV files.
-- **Cron Jobs**: Cron-based endpoints are automatically triggered at scheduled intervals, defined in the `vercel.json` configuration. These tasks ensure that essential background processes, such as marking peaks and detecting anomalies, are performed regularly.
+- **Cron Jobs**: Cron-based endpoints are automatically triggered at scheduled intervals, defined in the `vercel.json` configuration in the Web App. These tasks ensure that essential background processes, such as marking peaks and detecting anomalies, are performed regularly.
 - **User Actions**: Certain endpoints are triggered by user actions, such as manually generating reports or updating sensor settings.
 
 ## Documentation Structure
 
-The detailed documentation for each API endpoint is provided in the [`endpoints.md`](./endpoints.md) file. It covers the following:
+The detailed documentation for each API endpoint is provided in [`endpoints.md`](./endpoints.md). It covers the following:
 
 - **Endpoint Description**: What the endpoint does and its purpose.
 - **Triggering Mechanism**: How the endpoint is triggered, whether manually or automatically.
 - **Request and Response Structure**: Details on the required parameters, headers, and the format of responses.
 - **Error Handling**: Information on possible errors and how they are handled.
 
-For endpoints that are triggered by cron jobs, refer to the `cron_jobs.md` file, which outlines the configuration of scheduled tasks using Vercel and the specific endpoints involved.
+For endpoints that are triggered by cron jobs, refer to [`cron_jobs.md`](./cron_jobs.md), which outlines the configuration of scheduled tasks using Vercel and the specific endpoints involved.
