@@ -41,7 +41,11 @@ export default defineConfig({
 				},
 				{
 					label: 'Admin App',	
-					autogenerate: { directory: 'admin' },
+					items: [
+						{ label: 'Overview', link: '/admin/overview/' },
+						{ label: 'User Management', link: '/admin/user-management/' },
+						{ label: 'Sensor Management', link: '/admin/sensor-management/' },
+					]
 				},
 				{
 					label: 'Web API',
