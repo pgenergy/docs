@@ -1,0 +1,79 @@
+---
+title: Devices
+description: Devices in the app that users can assign to peaks. This allows to estimate the power of the devices.
+---
+
+import Latex from '../../../components/Latex.astro';
+import InlineLatex from '../../../components/InlineLatex.astro';
+
+The web app allows users to assign devices of different categories to [peaks](/web/sequences) in the energy consumption data. Due to the assignment, the app can estimate the power of the devices as shown [below](#estimating-the-power-of-a-device). By doing so, the users can gain insights into the energy consumption of their devices and identify potential areas for energy savings.
+
+## Categorization of Devices
+
+Each device belongs to a specific category. The categories itself are fine-granular (e.g. "toaster" or "washing machine") which allows a good comparison between devices of the same category (i.e. a comparison to reference devices).
+
+Since it is easier for users to find a specific categories if they are grouped with similar categories, we further defined super categories. In addition to simplifying the UI, this also allows provide energy saving tips that are applicable to all devices of a super category.
+
+In the following table, you can see the super categories and the corresponding categories:
+
+| Super Category | Device Categories |
+|-----------------|-------------------|
+| Kitchen Appliances | Stovetop, Oven, Fridge, Freezer, Microwave, Kettle, Toaster, Coffee Machine, Air Fryer, Blender, Dishwasher |
+| Cleaning Appliances | Washing Machine, Dryer, Vacuum Cleaner, Iron |
+| Personal Care | Hair Dryer, Body Care |
+| Climate Control | Heater Fan, Electric Heater, Air Conditioning, Heat Pump |
+| Entertainment | TVs and Monitors, Entertainment and Computers |
+| Lighting | Lighting |
+| Mobility | Electric Car, Electric Mobility (e.g., E-Bike) |
+| Others | Other Devices |
+
+## Estimating the Power of a Device
+
+Estimating the device power really only makes sense if you do not quite know the power yet. For all devices where the user already knows it, he can edit the devices and set the power manually. This is especially useful for devices where the power stays nearly constant over time (e.g. a charging station for an electric car). In conclusion, we need to ignore all devices where the power is manually set when estimating the device power.
+
+### Estimation Model
+
+Every time the user assigns a device to a peak, the estimation is triggered. The basis for the estimation are the user
+s peaks. Each peak basically consists of the [average power](/web/sequences#calculating-the-average-power-of-a-sequence) as well as all devices that are assigned to the peak. Thus, each peak can be described as an equation like
+
+<Latex formula={'P_i = \\sum\\limits_{n \\in \\N} d_n * b_i(n) * (1 - m_i(n))'}/>
+
+where <InlineLatex formula={'P_i '}/> is the average peak power minus the sum of the power of all devices that are assigned to this peak and whose power has been manually set, <InlineLatex formula={'d_n'}/> is the power of device <InlineLatex formula={'n'}/>, <InlineLatex formula={'b_i(n)'}/> is the binary value that indicates whether device <InlineLatex formula={'n'}/> is assigned to the peak or not, and <InlineLatex formula={'m_i(n)'}/> is the binary value that indicates whether the power of device <InlineLatex formula={'n'}/> is manually set or not. Simplified, this equation can be written as:
+
+<Latex formula={'P_i = \\sum\\limits_{n \\in \\N} d_n * a_i(n)'}/>
+
+Combining all peaks, we can create a system of linear equations that can be written as
+
+<Latex formula={'\\begin{pmatrix} a_1(1) & a_1(2) & \\dots & a_1(n) \\\\ a_2(1) & a_2(2) & \\dots & a_2(n) \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_i(1) & a_i(2) & \\dots & a_i(n) \\end{pmatrix} \\cdot \\begin{pmatrix} d_1 \\\\ d_2 \\\\ \\vdots \\\\ d_n \\end{pmatrix} = \\begin{pmatrix} P_1 \\\\ P_2 \\\\ \\vdots \\\\ P_i \\end{pmatrix}'}/>
+
+or in a more compact form:
+
+<Latex formula={'A x = b'}/>
+
+To solve the equation system, we use the least squares method. Basically, this is a linear regression. This is needed since the devices may occur in multiple peaks and the peak power is not fully accurate due to possible measurement errors. Applying the least squares method, we need to solve the following equation:
+
+<Latex formula={'A^T A x = A^T b'}/>
+
+### Implementation
+
+Since solving this equation is not trivial, we use third-party libraries to do so. In particular, we use [mathjs](https://mathjs.org/). This allows us to focus on the actual implementation of the estimation model and not on the mathematical details of the least squares method.
+
+### Handling Negative Values
+
+The linear regression may lead to negative values for the power of a device. In reality, this is obviously not possible. Thus, we ignore all negative values and only update the power of a device if the calculated power is greater than zero. This means, that the power of such devices will be estimated during the next iteration.
+
+### Evaluation of the Estimation
+
+To evaluate the estimation, we use the coefficient of determination <InlineLatex formula={'R^2'}/>. The value is saved in the database on a per-user basis. By transforming the value, we get one of three states:
+
+| State | Interval | Description |
+|-------|-------|-------------|
+| well  | <InlineLatex formula={'(0.7, 1]'}/> | The estimation is accurate enough for everything we do. |
+| sufficiently | <InlineLatex formula={'[0.3, 0.7]'}/> | The estimation is okay but the user should work with the values cautiously. Therefore, we show him hints in the app. |
+| insufficiently   | <InlineLatex formula={'[0, 0.3)'}/> | The estimation is bad and can not really be used for other stuff in the app. Thus, we deactive features that rely on the device power (e.g. the device amortization). |
+
+### Downsides
+
+By estimating the power of a device as described above, the estimation is quite accurate if you assume that devices have always the same power. However, this is sometimes not the case. For example, a washing machine may have a different power depending on the program. Such different levels of power are not considered in the estimation yet and may lead to inaccurate results. To improve this, the estimation model could be extended to consider such levels so that the user can assign a device to a peak with a specific program.
+
+Furthermore, the power of a device is not always a good indicator if the device is good or bad. For example, a hair dryer might have double the power of another hair dryer but might only need half the time to dry the hair which would lead to the same energy consumption overall.

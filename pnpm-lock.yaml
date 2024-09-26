@@ -11,6 +11,9 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.3
         version: 0.9.3(typescript@5.6.2)
+      '@astrojs/mdx':
+        specifier: ^3.1.6
+        version: 3.1.6(astro@4.15.9(rollup@4.22.4)(typescript@5.6.2))
       '@astrojs/starlight':
         specifier: ^0.27.1
         version: 0.27.1(astro@4.15.9(rollup@4.22.4)(typescript@5.6.2))
@@ -23,6 +26,9 @@ importers:
       astro:
         specifier: ^4.15.9
         version: 4.15.9(rollup@4.22.4)(typescript@5.6.2)
+      katex:
+        specifier: ^0.16.11
+        version: 0.16.11
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -958,6 +964,10 @@ packages:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
 
+  commander@8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+
   common-ancestor-path@1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
 
@@ -1395,6 +1405,10 @@ packages:
 
   jsonc-parser@3.3.1:
     resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
+
+  katex@0.16.11:
+    resolution: {integrity: sha512-RQrI8rlHY92OLf3rho/Ts8i/XvjgguEjOkO1BEXcU3N8BqPpSzBNwV/G0Ukr+P/l3ivvJUE/Fa/CwbS6HesGNQ==}
+    hasBin: true
 
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
@@ -3469,6 +3483,8 @@ snapshots:
 
   commander@4.1.1: {}
 
+  commander@8.3.0: {}
+
   common-ancestor-path@1.0.1: {}
 
   convert-source-map@2.0.0: {}
@@ -3982,6 +3998,10 @@ snapshots:
   jsonc-parser@2.3.1: {}
 
   jsonc-parser@3.3.1: {}
+
+  katex@0.16.11:
+    dependencies:
+      commander: 8.3.0
 
   kind-of@6.0.3: {}
 
