@@ -69,14 +69,14 @@ In the examples provided:
   - `500 Internal Server Error`: There was an issue sending survey invitations.
 
 ### `GET /anomaly`
-- **Description**: This endpoint checks for anomalies in the energy consumption data of registered users. Anomalies may indicate abnormal energy usage (see ['here'] (../web/sequences.mdx)).
+- **Description**: This endpoint checks for anomalies in the energy consumption data of registered users. Anomalies may indicate abnormal energy usage. The detailed documentation of the anomaly detection logic is provided in [`sequences`](../web/sequences.mdx).
 - **Schedule**: Triggered every 30 minutes (`0,30 * * * *`).
 - **Response**:
   - `200 OK`: Anomalies were successfully detected and processed.
   - `500 Internal Server Error`: An error occurred during the anomaly detection process.
 
 ### `GET /mark_peaks`
-- **Description**: This endpoint analyzes energy consumption data to detect and mark peaks in energy usage. Peaks typically represent periods when high-energy devices are in use (see ['here'] (../web/sequences.mdx)).
+- **Description**: This endpoint analyzes energy consumption data to detect and mark peaks in energy usage. Peaks typically represent periods when high-energy devices are in use. The detailed documentation of the peak detection logic is provided in [`sequences`](../web/sequences.mdx).
 - **Schedule**: Triggered every 30 minutes (`0,30 * * * *`).
 - **Response**:
   - `200 OK`: Peaks were successfully detected and marked.
