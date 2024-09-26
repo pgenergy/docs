@@ -101,6 +101,8 @@ description: Detailed documentation of all API endpoints with request/response s
 
 ## Process Endpoints
 
+In Vercel, long running endpoints typically run into timeouts. In our case, that mainly happened when the same operation needs to be performed for multiple users. To prevent such timeouts, we move the operation into a process endpoint that performs the operation for one user. Thus, each user specific operation has its own timeout.
+
 ### `POST /process_peaks`
 - **Description**: Processes and marks peaks in the energy consumption data for one specific user. These peaks are often linked to the use of high-energy devices.
 - **Trigger**: Triggered automatically after peaks are detected in the sensor data.
@@ -115,7 +117,7 @@ description: Detailed documentation of all API endpoints with request/response s
   - `404 Not Found`: No peaks found to process.
 
 ### `POST /process_anomaly`
-- **Description**: Processes anomalies in the energy consumption data. Anomalies typically represent unexpected or irregular energy usage.
+- **Description**: Processes anomalies in the energy consumption data for one specific user. Anomalies typically represent unexpected or irregular energy usage.
 - **Trigger**: Triggered either manually or by a cron job when anomalies are detected.
 - **Request**:
   - **Headers**:
@@ -128,7 +130,7 @@ description: Detailed documentation of all API endpoints with request/response s
   - `404 Not Found`: No anomalies detected.
 
 ### `POST /process_reports`
-- **Description**: Generates energy consumption reports based on sensor data and user activity.
+- **Description**: Generates an energy consumption report based on sensor data and user activity.
 - **Trigger**: Triggered by a cron job or manually to generate periodic reports.
 - **Request**:
   - **Headers**:
