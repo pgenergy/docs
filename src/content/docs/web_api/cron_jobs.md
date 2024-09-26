@@ -38,6 +38,8 @@ The `vercel.json` file includes the following cronjob configuration:
 }
 ```
 
+If you're not using Vercel as your deployment platform, you will need to configure your own cron job system.
+
 ### Schedule Format
 
 The schedule uses the **cron format**, which follows the structure:
@@ -67,14 +69,14 @@ In the examples provided:
   - `500 Internal Server Error`: There was an issue sending survey invitations.
 
 ### `GET /anomaly`
-- **Description**: This endpoint checks for anomalies in the energy consumption data of registered users. Anomalies may indicate abnormal energy usage.
+- **Description**: This endpoint checks for anomalies in the energy consumption data of registered users. Anomalies may indicate abnormal energy usage (see [here] (../web/sequences.mdx)).
 - **Schedule**: Triggered every 30 minutes (`0,30 * * * *`).
 - **Response**:
   - `200 OK`: Anomalies were successfully detected and processed.
   - `500 Internal Server Error`: An error occurred during the anomaly detection process.
 
 ### `GET /mark_peaks`
-- **Description**: This endpoint analyzes energy consumption data to detect and mark peaks in energy usage. Peaks typically represent periods when high-energy devices are in use.
+- **Description**: This endpoint analyzes energy consumption data to detect and mark peaks in energy usage. Peaks typically represent periods when high-energy devices are in use (see [here] (../web/sequences.mdx)).
 - **Schedule**: Triggered every 30 minutes (`0,30 * * * *`).
 - **Response**:
   - `200 OK`: Peaks were successfully detected and marked.
@@ -86,13 +88,3 @@ In the examples provided:
 - **Response**:
   - `200 OK`: Reports were successfully generated and sent to users.
   - `500 Internal Server Error`: There was an error during report generation.
-
-## Response and Error Handling
-
-All cron-triggered endpoints follow a similar pattern for response handling:
-
-- **Success Response**:
-  - `200 OK`: Indicates that the cronjob completed successfully and the task was executed without issues.
-  
-- **Error Response**:
-  - `500 Internal Server Error`: Indicates that the cronjob encountered an issue during execution, which could be related to data retrieval, processing errors, or third-party service failures.

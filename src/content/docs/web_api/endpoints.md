@@ -1,6 +1,6 @@
 ---
 title: API Endpoints
-description: Detailed documentation for all API endpoints with request/response structures and error handling.
+description: Detailed documentation of all API endpoints with request/response structures and error handling.
 ---
 
 ## Sensor Endpoints
@@ -11,12 +11,17 @@ description: Detailed documentation for all API endpoints with request/response 
 - **Request**:
   - **Headers**:
     - `Authorization`: Sensor token for authentication (e.g., `Bearer <token>`).
-  - **Body**: JSON or Protobuf format containing:
+  - **Body**: Protobuf format containing:
     - `value`: Energy consumption reading (numeric).
     - `timestamp`: (Optional) Timestamp of the reading. Defaults to the current time.
+- **Validation Logic**:
+  - The new sensor value is compared against the last stored value from the database.
+  - The time difference between the new reading and the previous reading is calculated.
+  - The value difference is then validated to ensure it is within reasonable limits to avoid false readings.
+  - If the difference is too large, the system will reject the new value as a possible erroneous reading.
 - **Response**:
   - `200 OK`: Data was successfully received and saved.
-  - `400 Bad Request`: The sensor data is invalid or incomplete.
+  - `400 Bad Request`: The sensor data is invalid or incomplete, including when the value difference exceeds the validation threshold.
   - `401 Unauthorized`: The token provided is invalid or missing.
 
 ### `POST /token`
@@ -25,7 +30,7 @@ description: Detailed documentation for all API endpoints with request/response 
 - **Request**:
   - **Headers**:
     - `Content-Type`: `application/json`
-  - **Body**: JSON object containing:
+  - **Body**: Protobuf object containing:
     - `sensor_id`: Unique identifier of the sensor.
     - `secret`: A secret key (if required) for additional security.
 - **Response**:
@@ -38,7 +43,7 @@ description: Detailed documentation for all API endpoints with request/response 
 - **Request**:
   - **Headers**:
     - `Authorization`: Sensor token.
-  - **Body**: JSON object containing:
+  - **Body**: Protobuf object containing:
     - `sensor_id`: Unique identifier of the sensor.
     - `script_id`: ID of the script that was received.
 - **Response**:
@@ -78,10 +83,10 @@ description: Detailed documentation for all API endpoints with request/response 
   - **Example**: `/csv_energy?start=2023-01-01&end=2023-01-31`
 - **Response**:
   - `200 OK`: Returns the CSV data.
-  - `404 Not Found`: No data was found for the given user or date range.
+  - `404 Not Found`: The user does not exist or no data was found for the given user or date range.
 
 ### `GET /csv_experiment`
-- **Description**: Exports experimental data related to energy consumption in CSV format.
+- **Description**: Exports experiment data related to energy consumption in CSV format.
 - **Trigger**: Called by administrators or researchers to retrieve experimental data.
 - **Request**:
   - **Headers**:
@@ -89,7 +94,7 @@ description: Detailed documentation for all API endpoints with request/response 
   - **Query Parameters**:
     - `experiment_id`: Unique identifier for the experiment.
 - **Response**:
-  - `200 OK`: Returns the CSV file containing experimental data.
+  - `200 OK`: Returns the CSV file containing experiment data.
   - `404 Not Found`: No data found for the given experiment ID.
 
 ---
@@ -97,7 +102,7 @@ description: Detailed documentation for all API endpoints with request/response 
 ## Process Endpoints
 
 ### `POST /process_peaks`
-- **Description**: Processes and marks peaks in the energy consumption data. These peaks are often linked to the use of high-energy devices.
+- **Description**: Processes and marks peaks in the energy consumption data for one specific user. These peaks are often linked to the use of high-energy devices.
 - **Trigger**: Triggered automatically after peaks are detected in the sensor data.
 - **Request**:
   - **Headers**:
@@ -134,16 +139,3 @@ description: Detailed documentation for all API endpoints with request/response 
 - **Response**:
   - `200 OK`: The report was generated successfully.
   - `500 Internal Server Error`: An error occurred during report generation.
-
----
-
-## Error Handling
-
-For all endpoints, the following common error codes may apply:
-
-- `400 Bad Request`: The request was invalid or incomplete.
-- `401 Unauthorized`: The request lacked valid authentication credentials.
-- `404 Not Found`: The requested resource could not be found.
-- `500 Internal Server Error`: The server encountered an unexpected error.
-
-Refer to the specific endpoint descriptions for more detailed error handling mechanisms.
