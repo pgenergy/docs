@@ -51,7 +51,7 @@ The endpoints are triggered through various mechanisms:
 
 ## Documentation Structure
 
-The detailed documentation for each API endpoint is provided in the `endpoints.md` file. It covers the following:
+The detailed documentation for each API endpoint is provided in the [`endpoints.md`](./endpoints.md) file. It covers the following:
 
 - **Endpoint Description**: What the endpoint does and its purpose.
 - **Triggering Mechanism**: How the endpoint is triggered, whether manually or automatically.
