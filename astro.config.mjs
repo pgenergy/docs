@@ -45,6 +45,7 @@ export default defineConfig({
 						{ label: 'Overview', link: '/admin/overview/' },
 						{ label: 'User Management', link: '/admin/user-management/' },
 						{ label: 'Sensor Management', link: '/admin/sensor-management/' },
+						{ label: 'E-Mails', link: '/admin/mails/' },
 					]
 				},
 				{
