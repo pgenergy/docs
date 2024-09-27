@@ -3,72 +3,10 @@ title: Web App
 description: An overview of the web app.
 ---
 
-import { Card, LinkCard, CardGrid } from '@astrojs/starlight/components';
-import { Image } from 'astro:assets';
-import tailwindimage from '/src/assets/tailwindcss-logotype.svg';
-import tailwindimageDark from '/src/assets/tailwindcss-logotype-white.svg';
+import { LinkCard } from '@astrojs/starlight/components';
 
-The energyleaf web app is the only software used by our end users and aims at giving them an overview of their energy consumption.
+As a part of the [monorepo](/general/monorepo), the web app is the only application used by our end users and aims at giving them an overview of their energy consumption. By doing so, the app helps them to understand their energy consumption and to take actions to reduce it. It contains various features like a dashboard, reports, and settings.
 
-## Architecture
+<LinkCard title="Interested?" description="Then check out our app and try our demo." href="https://energyleaf.de" />
 
-To be able to concentrate on the software development itself, we use a serverless architecture. In a nutshell, it helps us developing our software quickly and handles a lrage of the deployment process.
-
-:::tip
-If you'd like to dig deeper into this topic, you may take a look at one of the following articles.
-- https://martinfowler.com/articles/serverless.html
-- https://www.cloudflare.com/learning/serverless/why-use-serverless/
-- https://www.datadoghq.com/knowledge-center/serverless-architecture/
-:::
-
-## Software stack
-
-The web app is written in Typescript with the following software stack:
-
-<CardGrid stagger>
-	<Card title="pnpm" icon="pnpm">
-		We use pnpm as our package manager.
-        <LinkCard
-            title="Check out"
-            href="https://pnpm.io/"
-        />
-	</Card>
-	<Card title="React.js" icon="seti:react">
-		Our frontend web framework is react.js.
-        <LinkCard
-            title="Check out"
-            href="https://react.dev/"
-        />
-	</Card>
-	<Card>
-        <Image src={tailwindimage} alt="Logo of Tailwind CSS." class="dark:hidden" />
-        <Image src={tailwindimageDark} alt="Logo of Tailwind CSS." class="light:hidden" />
-        
-        The framework Tailwind CSS simplifies styling with CSS.
-		
-        <LinkCard
-            title="Check out"
-            href="https://tailwindcss.com/"
-        />
-	</Card>
-    <Card>
-        <Image src="https://raw.githubusercontent.com/drizzle-team/drizzle-orm/a78eefe08e127922565486143e0150a718b27e8a/misc/readme/logo-github-sq-light.svg" height="33" width="262" alt="Logo of drizzle." class="dark:hidden" />
-        <Image src="https://raw.githubusercontent.com/drizzle-team/drizzle-orm/a78eefe08e127922565486143e0150a718b27e8a/misc/readme/logo-github-sq-dark.svg" height="33" width="262" alt="Logo of Tailwind CSS." class="light:hidden" />
-        
-        Drizzle is integrated in our project as an ORM.
-		
-        <LinkCard
-            title="Check out"
-            href="https://orm.drizzle.team/"
-        />
-	</Card>
-    <Card title="Biome.js" icon="biome">
-		For linting, we use Biome.js.
-        <LinkCard
-            title="Check out"
-            href="https://biomejs.dev/"
-        />
-	</Card>
-</CardGrid>
-
-
+In the following pages, we will give an overview of the web app on a technical level.

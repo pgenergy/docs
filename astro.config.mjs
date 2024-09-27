@@ -20,9 +20,9 @@ export default defineConfig({
 					label: 'General',
 					items: [
 						{ label: 'Introduction', link: '/general/introduction' },
-						{ label: 'Getting started', link: '/general/getting-started' },
 						{ label: 'Architecture', link: '/general/architecture' },
 						{ label: 'Database', link: '/general/database' },
+						{ label: 'Monorepo', link: '/general/mono-repo' },
 						{ label: 'Scripts', link: '/general/scripts' },
 					],
 				},

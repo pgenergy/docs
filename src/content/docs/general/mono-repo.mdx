@@ -1,0 +1,134 @@
+---
+title: Monorepo
+description: Description of the monorepo structure for web and backend.
+---
+
+import { Card, LinkCard, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import tailwindimage from '/src/assets/tailwindcss-logotype.svg';
+import tailwindimageDark from '/src/assets/tailwindcss-logotype-white.svg';
+import nextjsimage from '/src/assets/nextjs-logotype-light-background.svg';
+import nextjsimageDark from '/src/assets/nextjs-logotype-dark-background.svg';
+import { Steps } from '@astrojs/starlight/components';
+
+Generally, we use a monorepo structure for our main backend and apps that are accessible for users. This includes the following components:
+
+- [Web App](/web/overview)
+- [Admin App](/admin/overview)
+- [Web API](/web_api/overview)
+
+Using a monorepo allows us to manage all components in one place and share code between them. This is especially useful for shared components like the database models or the authentication logic. Furthermore, this prevents conflicts between the components as they are highly dependent on each other.
+
+## Getting Started
+
+<Steps>
+1. Clone the [repository](https://github.com/pgenergy/energyleaf).
+2. Execute `pnpm install` to install dependencies.
+3. Rename `.env.sample` to `.env` and put in host, user, and password. Ask an administrator for this sensitive information.
+4. Execute `pnpm dev` to run the project in development mode or `pnpm build` to build it.
+5. Local deployment can be accessed on
+    - http://localhost:3000 for the web app and
+    - http://localhost:3001 for the admin app.
+</Steps>
+
+Execute `pnpm lint` to check the source code against best practices of web development and `pnpm format` to make the code more easily readable.
+
+## Architecture
+
+To be able to concentrate on the software development itself, we use a serverless architecture. In a nutshell, it helps us developing our software quickly and handles a lot of the deployment process. Furthermore, it allows us to scale our software easily as the number of users grows.
+
+:::tip
+If you'd like to dig deeper into this topic, you may take a look at one of the following articles.
+- https://martinfowler.com/articles/serverless.html
+- https://www.cloudflare.com/learning/serverless/why-use-serverless/
+- https://www.datadoghq.com/knowledge-center/serverless-architecture/
+:::
+
+## Hosting
+
+We use [Vercel](https://vercel.com/) for hosting our apps and our web API. Vercel is a cloud platform that allows us to deploy our apps and APIs with ease. It also provides us with a lot of features like automatic deployments, serverless functions, and more.
+
+## Software stack
+
+The monorepo is written in Typescript with the following software stack:
+
+<CardGrid stagger>
+    <Card>
+        <Image src={nextjsimage} alt="Logo of Next.js." class="dark:hidden" />
+        <Image src={nextjsimageDark} alt="Logo of Next.js." class="light:hidden" />
+		Our framework of choice is Next.js.
+        <LinkCard
+            title="Check out"
+            href="https://nextjs.org/"
+        />
+	</Card>
+	<Card title="pnpm" icon="pnpm">
+		We use pnpm as our package manager.
+        <LinkCard
+            title="Check out"
+            href="https://pnpm.io/"
+        />
+	</Card>
+	<Card title="React.js" icon="seti:react">
+		Our frontend web framework is React.js.
+        <LinkCard
+            title="Check out"
+            href="https://react.dev/"
+        />
+	</Card>
+	<Card>
+        <Image src={tailwindimage} alt="Logo of Tailwind CSS." class="dark:hidden" />
+        <Image src={tailwindimageDark} alt="Logo of Tailwind CSS." class="light:hidden" />
+        
+        The framework Tailwind CSS simplifies styling with CSS.
+		
+        <LinkCard
+            title="Check out"
+            href="https://tailwindcss.com/"
+        />
+	</Card>
+    <Card>
+        <Image src="https://raw.githubusercontent.com/drizzle-team/drizzle-orm/a78eefe08e127922565486143e0150a718b27e8a/misc/readme/logo-github-sq-light.svg" height="33" width="262" alt="Logo of drizzle." class="dark:hidden" />
+        <Image src="https://raw.githubusercontent.com/drizzle-team/drizzle-orm/a78eefe08e127922565486143e0150a718b27e8a/misc/readme/logo-github-sq-dark.svg" height="33" width="262" alt="Logo of Tailwind CSS." class="light:hidden" />
+        
+        Drizzle is integrated in our project as an ORM.
+		
+        <LinkCard
+            title="Check out"
+            href="https://orm.drizzle.team/"
+        />
+	</Card>
+    <Card title="Biome.js" icon="biome">
+		For linting, we use Biome.js.
+        <LinkCard
+            title="Check out"
+            href="https://biomejs.dev/"
+        />
+	</Card>
+</CardGrid>
+
+## Structure
+
+In the following diagram, you can see how the monorepo is structured.
+
+![Monorepo structure](/src/assets/mono-repo-structure.svg)
+
+### Apps
+
+The apps are located in the `apps` folder. Each app has its own package. Note that the [web API](/web_api/overview) is contained inside the `admin` app.
+
+### Packages
+
+In the following, you can see an overview of the packages and their purpose.
+
+- `mail`: Contains everything related to sending emails (e.g. mail templates).
+- `tsconfig`: Contains the shared TypeScript configuration.
+- `taildwindcss`: Contains the shared Tailwind CSS configuration used for the frontend.
+- `ui`: Contains basic shared UI components with custom theming applied (e.g. buttons).
+- `postgres`: Contains the database models and the database connection based on PostgreSQL.
+- `lib`: Contains shared types and utility functions used across the monorepo.
+- `storage`: Contains storage logic needed to store files inside a [S3 bucket](https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/Welcome.html).
+
+### External Packages
+
+We use tons of external packages. Especially important is the next.js package. Another package that is worth mentioning is our own [@energyleaf/proto package](https://www.npmjs.com/package/@energyleaf/proto).
