@@ -5,7 +5,7 @@ description: An overview of how e-mails are created and sent in the system.
 
 There are several use cases in the system where e-mails need to be sent. This includes the [reports](/web/reports) and basic user management tasks like password resets. To send e-mails, we use [Resend](https://resend.com/).
 
-To handle e-mails in code, we use the [Resend integration of react email](https://react.email/docs/integrations/resend). This allows us to design e-mails in a similar way to how we design the frontend of our apps. All the templates are stored in the `mail` package (see [project structure](/general/monorepo#structure)).
+To handle e-mails in code, we use the [Resend integration of react email](https://react.email/docs/integrations/resend). This allows us to design e-mails in a similar way to how we design the frontend of our apps. All the templates are stored in the `mail` package (see [project structure](/general/mono-repo#structure)).
 
 ## Generating Graphs
 
@@ -21,7 +21,7 @@ registerFont(join(process.cwd(), "/fonts/ARIAL.TTF"), { family: "Arial" });
 
 ## Image Handling
 
-Including images in e-mails in base64 format is not recommended as some e-mail providers (e.g. Gmail) block images that are included in this way. We avoided this by hosting the images on our own storage and including them in the e-mails as links. For storage, we use an [S3 bucket](/general/monorepo#components).
+Including images in e-mails in base64 format is not recommended as some e-mail providers (e.g. Gmail) block images that are included in this way. We avoided this by hosting the images on our own storage and including them in the e-mails as links. For storage, we use an [S3 bucket](/general/architecture#dependencies-between-components).
 
 :::note
 Since the S3 bucket is an optional component, images are still included as base64 in the e-mails if no S3 bucket is configured.

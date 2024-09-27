@@ -109,4 +109,3 @@ description: An overview of all environment variables used in the web app.
 - **Type:** `string`
 - **Required:** No
 - **Description:** File key in the S3 bucket for retrieving the handbook for [app version](/web/app-versions) 3.
-
