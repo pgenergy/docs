@@ -11,7 +11,7 @@ The code follows a deep learning approach using a hybrid architecture of Convolu
 
 # Data Preparation
 
-We use the dataset that we already processed(see [`here`](./data.md)). The dataset consists of power consumption readings from several household devices, each reading associated with a timestamp and a peak number that identifies significant consumption events. The devices are labeled based on their type, such as washing machines, dishwashers, fridges, freezers and microwaves.
+We use the dataset that we already processed (see [`here`](./data.md)). The dataset consists of power consumption readings from several household devices, each reading associated with a timestamp and a peak number that identifies significant consumption events. The devices are labeled based on their type, such as washing machines, dishwashers, fridges, freezers and microwaves.
 
 ## Device Mapping
 
