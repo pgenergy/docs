@@ -52,6 +52,6 @@ aggregated_df.to_csv(filename, index=False)
 
 We identified significant peaks in the electricity consumption data to focus on the relevant events for model training. Peaks that did not meet the threshold or were too short (less than 2 minutes) were excluded from the data. The remaining peaks were used to train the machine learning model.
 
-We re-implemented the [Median Absolute Deviation (MAD)](https://en.wikipedia.org/wiki/Median_absolute_deviation) algorithm in order so generate peaks that are as similar as possible. However, there might be some minor differences between results due to implementation details.
+We re-implemented the [Median Absolute Deviation (MAD)](https://en.wikipedia.org/wiki/Median_absolute_deviation) algorithm in order make peaks generated this way as similar as possible to the measured ones. However, there might be some minor differences between results due to implementation details.
 
 This approach allowed us to work with the most meaningful data for accurate model predictions.
