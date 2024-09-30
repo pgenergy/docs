@@ -33,7 +33,7 @@ The dataset is spread across multiple CSV files, each containing energy consumpt
 
 1. **Reading the CSV Data**: The data is loaded from the CSV file.
 2. **Labeling**: Each row in the CSV is labeled with the corresponding device's label.
-3. **Scaling**: The power consumption values are scaled using a `StandardScaler` to ensure that the model can better learn from the normalized data.
+3. **Scaling**: The power consumption values are scaled using a `StandardScaler` to ensure that the model can better learn from the normalized data. [[1]](https://datascience.stackexchange.com/a/77929)
 
 ### Loading and Scaling Data
 
