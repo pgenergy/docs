@@ -1,0 +1,69 @@
+---
+title: Analog Electricity Meter Sensor Installation Instructions
+description: Installation instructions for analog electricity meter sensors
+sidebar:
+  order: 21
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+### Preparations
+Before proceeding, make sure that the AEM package (analog electricity meter) contains the following parts and that you have access to a power source (power outlet). An Allen key for M3 is also required.
+
+- 1x Energyleaf AEM Sensor v1
+- 1x Energyleaf AEM Sensor Holder with Cable v1
+- 1x Energyleaf AEM Sensor Holder with Antenna preperation v1
+- 2x Energyleaf AEM Sensor Holder Extension v1
+- 1x USB-A to Mikro-USB Cable
+- 1x Power supply unit with USB-A Output
+- 4x M3 Hexagon socket screw
+
+Your sensor can be prebuilt, so you only need to adjust the extensions by using the 4 screws.
+
+### Installation
+Install the sensor as described in the following steps:
+
+<Steps>
+
+1. **Position the sensor so that the camera is above the marking on the ferraris running surface on the electricity meter.**
+
+2. **To attach the sensor permanently to the electricity meter, you will need to use some duct tape (e.g. fabric duct tape) on the extension. For that, place the extension and its holder to the sensor and use two screw per holder to fixate it.**
+
+3. **Then connect the sensor to the power supply unit using the USB Cable.**
+
+</Steps>
+
+
+### Configuration
+Configure the sensor as described in the following steps:
+
+<Steps>
+
+1. **Get a device, that can use WLAN ready.**
+
+2. **The sensor should, if not already configured or resetted, create a WLAN network with “energyleaf” in its name. Connect your device with it.**
+
+3. **Your webbrowser on your device should open a configuration website. Configure there the WLAN the sensor should use.**
+
+4. **After successfully configuring the WLAN, the sensor closes the network.**
+
+5. **Verify that you can see data in your energyleaf account.**
+
+</Steps>
+
+
+### Troubleshooting
+If you can’t see any data on your Energyleaf account, you can verify the following steps on your own. If the issue persists, please contact Energyleaf as your service provider.
+
+<CardGrid>
+	<Card title="Not registered?" icon="information">
+                Contact the service provider and ask if the sensor is registered by providing the sensor's identifier.
+        </Card>
+	<Card title="No access trough the WLAN?" icon="information">
+                If connected to a guest WLAN or a restricted WLAN, the sensor maybe can't connect to energyleaf. Try to change the WLAN or disable some restrictions.
+        </Card>
+	<Card title="Bad Positioning?" icon="information">
+		Look from above to see if you can check that the light emitted by the sensor illuminates the position of the Ferraris slider. Also check that the peaks at the edges of the sensor show that the position is correct (under the center of the sensor should be the middle position of the Ferraris slider).
+	</Card>
+</CardGrid>

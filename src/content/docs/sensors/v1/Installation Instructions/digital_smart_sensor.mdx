@@ -1,0 +1,72 @@
+---
+title: Digital Electricity Meter and Smart Meter Sensor Installation Instructions
+description: Installation instructions for digital electricity meter and smart meter sensors
+sidebar:
+  order: 20
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+### Preparations
+Before proceeding, make sure that the SEM package (smart electricity meter) contains the following parts and that you have access to a power source (power outlet) if no powerbank is contained.
+
+- 1x Energyleaf SEM Sensor v1
+- 1x USB-A to Mikro-USB Cable
+- 1x Power supply unit with USB-A Output (if no powerbank is included)
+
+### Installation
+Install the sensor as shown in the illustration below:
+
+![Installation of digital / smart electricity meter sensor](/src/assets/sensors/v1/digital_sensor_installation.jpg)
+
+<Steps>
+
+1. **Connect the USB Cable to the Sensor.**
+
+2. **Identify the infrared interface of your electricity meter.**
+
+3. **Attach the sensor to the infrared interface.**
+
+4. **Connect the other end of the USB Cable to the Power supply unit or the powerbank.**
+
+</Steps>
+
+:::tip
+Using the output on the console with an increased log level can help at adjusting the positioning of the sensor. If already powered up
+:::
+
+### Configuration
+Configure the sensor, like in the following steps:
+
+<Steps>
+
+1. **Get a device, that can use WLAN ready.**
+
+2. **The sensor should, if not already configured or resetted, create a WLAN network with "energyleaf" in its name. Connect your device with it.**
+
+3. **Your webbrowser on your device should open a configuration website. Configure there the WLAN the sensor should use.**
+
+4. **After successfully configuring the WLAN, the sensor closes the network and should inform you about its address in the configured WLAN. If the sensor does not display the IP address, it can be looked up in the router.**
+
+5. **Verify that you can see data in your energyleaf account.**
+
+</Steps>
+
+### Troubleshooting
+If you can’t see any data on your Energyleaf account, you can verify the following steps on your own. If the issue persists, please contact Energyleaf as your service provider.
+
+<CardGrid>
+	<Card title="The wrong way around?" icon="information">
+    		Try turning the sensor 180 degrees. Otherwise, a check can be carried out to see whether numbers are displayed via the address assigned during configuration. If only zeros are displayed, the sensor must be rotated. If only zeros are displayed at different positions or no numbers appear, please contact the service provider.
+  	</Card>
+	<Card title="Not registered?" icon="information">
+		Contact the service provider and ask if the sensor is registered by providing the sensor's identifier.        
+	</Card>
+	<Card title="No access trough the WLAN?" icon="information">
+                If connected to a guest WLAN or a restricted WLAN, the sensor maybe can't connect to energyleaf. Try to change the WLAN or disable some restrictions.
+        </Card>
+	<Card title="Bad infrared interface?" icon="information">
+        	Try to establish a connection with the sensor via the address issued during configuration. Normally, you should see the last correct output from the electricity meter. Otherwise, contact your service provider's support team for assistance with troubleshooting.
+	</Card>
+</CardGrid>

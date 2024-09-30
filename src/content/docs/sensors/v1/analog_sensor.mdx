@@ -1,0 +1,100 @@
+---
+title: Analog Electricity Meter Sensor
+description: An overview of the sensor for analog electricity meters
+sidebar:
+  order: 11
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+:::note
+The sensor itself has so far only been successfully tested under laboratory conditions!
+:::
+
+### Source Code
+The code for this type of sensor is available at [Analog Electricity Meter Repository](https://github.com/pgenergy/analog-electricity-meter).
+
+### Supported Meters
+Currently, only analog electricity meters with a ferraris runner that features a single red mark are supported. Additionally, the number of rotations per kWh (usually next to the ferraris runner) is required.
+
+### Sensor Functionality
+![Functionality of the sensor for analog electricity meters](/src/assets/sensors/v1/protocol_example.svg)
+
+The functionality of the sensor is illustrated in the image above, depicting a series of requests and responses involved in its operation:
+
+<Steps>
+
+1. **Token Request**
+The sensor initiates a token request by including its MAC address in the request and a flag indicating whether a new script is needed.
+
+2. **Token Response**
+Energyleaf responds to the request with a new token. If the sensor is not found in the database (i.e., it has not been registered with its MAC address), the response will indicate a failure. If the sensor has not previously received a script that has been confirmed, the successful response will include the script.
+
+3. **Sensor Data Request**
+If the token is valid, the sensor verifies its validity by tracking its lifetime. The sensor then sends the newly read values to Energyleaf.
+
+4. **Sensor Data Response**
+Energyleaf responds to indicate whether the last data package was successfully processed. If the token became invalid during the transfer, the response will contain an error code, prompting the sensor to request a fresh token and attempt to resend the data package. If the transfer was successful, the sensor will wait for 15 seconds before reading and sending the current values again.
+
+</Steps>
+
+:::note
+The sensor will try only some attempts to send data to energyleaf. After that attempts the sensor will wait for some time and retry it.
+:::
+
+### Data Reading Process
+The analog sensor utilizes an ESP32-CAM or ESP32-S3 to read data. It employs the Apalinea data stream library, which is using an operator graph designed to process image signals.
+
+Using computer vision (CV) algorithms, the system tracks the designated marker (ferraris runner) in the image. This tracking enables the sensor to approximate energy consumption over a time window of 15 seconds. The calculated energy consumption is then transmitted to Energyleaf.
+
+![Operator graph for analog electricity meter](/src/assets/sensors/v1/analog_sensor.svg)
+
+<Steps>
+
+1. **CameraSourceOperator**
+This operator performs all instructions needed to give the next operators access to a camera signal, by an image object. 
+
+2. **TokenEnrichPipeOperator**
+This will enrich the datastream by an valid token and the rotations per kWh number or will stop processing the datastream, until it gets a valid token. So it is managing Token Request and Token Response. 
+
+3. **CropPipeOperator**
+This Operator crops the image object to the needed size. This will reduce the processing power needed to perform later cv algorithms on the image.
+
+4. **DetectorPipeOperator**
+This will perform the cv algorithm, to detect the red mark on the ferraris runner. It will remove the image from the datastream and adds the counted red pixels.
+
+5. **SelectPipeOperator**
+This operator checks whether the counted red pixels exceed a certain threshold value for red pixels
+
+6. **StatePipeOperator**
+This will check that after a detection a not detection is following. So we can't detect the same mark multiple times.
+
+7. **EnergyCalculatorPipeOperator**
+This operator counts the detected marks for a 15 seconds timewindow and calculates after 15 seconds the energy consumption. 
+
+8. **EnergySenderSinkOperator**
+This sink is sending the energy consumption value to energyleaf.
+
+</Steps>
+
+:::note
+Apalinea contains heartbeats, which we use to manage the 15-second time window if no new marker has been detected in this window.
+:::
+
+### Building and Flashing
+To build and flash the firmware yourself, follow these steps
+
+<Steps>
+
+1. **Install Visual Studio Code and the Platform.IO Plugin.**
+
+2. **Connect the ESP32-CAM of your sensor to your computer using an adapter. Normally, you can use the USB cable that powers the sensor to connect it directly to your computer.**
+
+3. **Clone the source code and open it in Visual Studio Code**
+After opening the source code, Platform.IO should initialize automatically.
+
+4. **Press "Build All" to load all necessary dependencies and start the build process.**
+
+5. **Press "Upload All" to build (if not already done) and flash the firmware to the connected sensor.**
+
+</Steps>

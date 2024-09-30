@@ -1,6 +1,8 @@
 ---
 title: SML Protocol
 description: SML protocols for smart meter that are supported
+sidebar:
+  order: 10
 ---
 This documentation provides detailed information on the SML protocols and smart meters supported by our app.
 The page categorizes SML protocols by producer and model number, enabling easy reference and efficient integration.
