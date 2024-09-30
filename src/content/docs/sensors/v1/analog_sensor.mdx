@@ -45,7 +45,7 @@ The sensor will try only some attempts to send data to energyleaf. After that at
 ### Data Reading Process
 The analog sensor utilizes an ESP32-CAM or ESP32-S3 to read data. It employs the Apalinea data stream library, which is using an operator graph designed to process image signals.
 
-Using computer vision (CV) algorithms, the system tracks the designated marker (ferraris runner) in the image. This tracking enables the sensor to approximate energy consumption over a time window of 15 seconds. The calculated energy consumption is then transmitted to Energylea
+Using computer vision (CV) algorithms, the system tracks the designated marker (ferraris runner) in the image. This tracking enables the sensor to approximate energy consumption over a time window of 15 seconds. The calculated energy consumption is then transmitted to Energyleaf.
 
 ![Operator graph for analog electricity meter](/src/assets/sensors/v1/analog_sensor.svg)
 
@@ -55,7 +55,7 @@ Using computer vision (CV) algorithms, the system tracks the designated marker (
 This operator performs all instructions needed to give the next operators access to a camera signal, by an image object. 
 
 2. **TokenEnrichPipeOperator**
-This will enrich the datastream by an valid token and the rotations per kWh number or will stop processing the datastream, until it get a valid token. So it is managing Token Request and Token Response. 
+This will enrich the datastream by an valid token and the rotations per kWh number or will stop processing the datastream, until it gets a valid token. So it is managing Token Request and Token Response. 
 
 3. **CropPipeOperator**
 This Operator crops the image object to the needed size. This will reduce the processing power needed to perform later cv algorithms on the image.
@@ -67,7 +67,7 @@ This will perform the cv algorithm, to detect the red mark on the ferraris runne
 This operator checks whether the counted red pixels exceed a certain threshold value for red pixels
 
 6. **StatePipeOperator**
-This will check that after a detection a not detection is following. So we cant detect the same mark multiple times.
+This will check that after a detection a not detection is following. So we can't detect the same mark multiple times.
 
 7. **EnergyCalculatorPipeOperator**
 This operator counts the detected marks for a 15 seconds timewindow and calculates after 15 seconds the energy consumption. 
