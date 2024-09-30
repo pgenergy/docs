@@ -30,6 +30,7 @@ export default defineConfig({
 					label: 'Web App',
 					items: [
 						{ label: 'Overview', link: '/web/overview/' },
+						{ label: 'Environment Variables', link: '/web/env/' },
 						{ label: 'App versions', link: '/web/app-versions/' },
 						{ label: 'Demo', link: '/web/demo/' },
 						{ label: 'Sensor Data Sequences', link: '/web/sequences/' },
@@ -41,7 +42,13 @@ export default defineConfig({
 				},
 				{
 					label: 'Admin App',	
-					autogenerate: { directory: 'admin' },
+					items: [
+						{ label: 'Overview', link: '/admin/overview/' },
+						{ label: 'Environment Variables', link: '/admin/env/' },
+						{ label: 'User Management', link: '/admin/user-management/' },
+						{ label: 'Sensor Management', link: '/admin/sensor-management/' },
+						{ label: 'E-Mails', link: '/admin/mails/' },
+					]
 				},
 				{
 					label: 'Web API',

@@ -1,10 +1,14 @@
 ---
-title: Overview
+title: Admin App
 description: An overview of the admin app.
 ---
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+The admin app is used by privileged users to manage the overall system. It mainly consists of a [user management](/admin/user-management) and a [sensor management](/admin/sensor-management).
 
-## Further reading
+## Authentication
 
-- Read [about reference](https://diataxis.fr/reference/) in the Diátaxis framework
+The admin app can be accessed by the same credentials as the [web app](/web/overview). To restrict access, only users with the `is_admin` flag (see [database schema](/general/database#user-table)) can log in.
+
+:::caution
+Be careful about who you give admin access to. Admins have full control over the system and may revoke your admin privileges. Furthermore, they get access to sensitive data about the users. 
+:::
