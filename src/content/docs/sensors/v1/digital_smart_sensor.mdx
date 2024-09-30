@@ -1,0 +1,67 @@
+---
+title: Digital Electricity Meter and Smart Meter Sensor
+description: An overview of the sensor for digital electricity meters and smart meters
+sidebar:
+  order: 9
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+### Source Code
+The code for this type of sensor is available at [Smart Electricity Meter Repository](https://github.com/pgenergy/smart-electricity-meter).
+
+### Supported Digital Electrictiy and Smart Meters
+The supported SML protocol definitions can be found [here](../protocol).
+
+### Sensor Functionality
+![Functionality of the sensor for smart electricity meters](/src/assets/sensors/v1/protocol_ir_example.svg)
+
+The functionality of the sensor is illustrated in the image above, depicting a series of requests and responses involved in its operation:
+
+<Steps> 
+
+1. **Token Request**
+The sensor initiates a token request by including its MAC address in the request and a flag indicating whether a new script is needed
+
+2. **Token Response**
+Energyleaf responds to the request with a new token. If the sensor is not found in the database (i.e., it has not been registered with its MAC address), the response will indicate a failure. If the sensor has not previously received a script that has been confirmed, the successful response will include the script.
+
+3. **Script Accepted Request**
+If the token response includes a script, and the sensor successfully stores that script, it sends an acceptance request to inform Energyleaf that future token responses do not need to include the script. The script should only be included in subsequent token responses if requested by the sensor or Energyleaf itself.
+
+4. **Script Accepted Response**
+Energyleaf acknowledges the acceptance request; however, there is no further action required from the sensor in response to this message.
+
+5. **Sensor Data Request**
+If the token is valid, the sensor verifies its validity by tracking its lifetime. The sensor then sends the newly read values to Energyleaf.
+
+6. **Sensor Data Response**
+Energyleaf responds to indicate whether the last data package was successfully processed. If the token became invalid during the transfer, the response will contain an error code, prompting the sensor to request a fresh token and attempt to resend the data package. If the transfer was successful, the sensor will wait for 15 seconds before reading and sending the current values again.
+
+</Steps>
+
+:::note
+The sensor will try only some attempts to send data to energyleaf. After that attempts the sensor will wait for some time and retry it.
+:::
+
+### Data Reading Process
+The data is read via the infrared interface of the sensor. Upon successful reading, the data is encapsulated into an internal struct and prepared for transmission. This structured approach ensures that the data is organized and ready to be sent to Energyleaf for processing.
+
+### Building and Flashing
+To build and flash the firmware yourself, follow these steps
+
+<Steps>
+
+1. **Install Visual Studio Code and the Platform.IO Plugin.**
+
+2. **Connect the ESP-01S from your sensor to your computer using an ESP-01S adapter.**
+
+3. **Clone the source code and open it in Visual Studio Code**
+After opening the source code, Platform.IO should initialize automatically.
+
+4. **Press "Build All" to load all necessary dependencies and start the build process.**
+
+5. **Press "Upload All" to build (if not already done) and flash the firmware to the connected sensor.**
+
+</Steps>
+
